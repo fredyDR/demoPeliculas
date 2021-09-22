@@ -17,6 +17,10 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        self.setUpTable()
+    }
+    
+    overrride func viewWillAppear(){
         networkPeliculas.ApiServiceShared.getPeliculasRecomendaciones{ (status, peliculas, mensaje) in
             if status{
                 for pelicula in peliculas!{
@@ -24,7 +28,6 @@ class ViewController: UIViewController {
                     self.peliculasArray.append(pelicula)
                 }
                 print("\(self.peliculasArray.count)")
-                self.setUpTable()
                 self.tableView.reloadData()
             }else{
                 print("Error: \(mensaje)")
